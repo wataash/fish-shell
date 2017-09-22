@@ -395,8 +395,25 @@ static int fish_parse_opt(int argc, char **argv, fish_cmd_opts_t *opts) {
     // We are an interactive session if we have not been given an explicit
     // command or file to execute and stdin is a tty. Note that the -i or
     // --interactive options also force interactive mode.
+//<<<<<<< HEAD
     if (opts->batch_cmds.empty() && optind == argc && isatty(STDIN_FILENO)) {
         set_interactive_session(true);
+//=======
+//    // wataash: `optind == argc` was `if (my_optind == argc)`
+//    //          on b257e79 (2015-12-18), and refactored on f029e04 (2015-12-19).
+//    //
+//    // echo "#!/bin/sh
+//    // grep -r ' optind == argc ' | grep -v bisect.sh && exit 1
+//    // exit 0
+//    // " > bisect.sh
+//    // chmod 755 bisect.sh
+//    // git bisect start
+//    // git bisect old 1.16.0
+//    // git bisect new master
+//    // git bisect run ./bisect.sh
+//    if (opts->batch_cmds.size() == 0 && optind == argc && isatty(STDIN_FILENO)) {
+//        is_interactive_session = 1;
+//>>>>>>> comments (wataash:)
     }
 
     return optind;
@@ -492,7 +509,13 @@ int main(int argc, char **argv) {
             reader_set_end_loop(false);
         } else if (my_optind == argc) {
             // Implicitly interactive mode.
+//<<<<<<< HEAD
             res = reader_read(parser, STDIN_FILENO, {});
+//=======
+//            // wataash: ?? reaches here even if `is_interactive_session == 1`.
+//            //          Shouldn't it be `else if (is_interactive_session)` ?
+//            res = reader_read(STDIN_FILENO, empty_ios);
+//>>>>>>> comments (wataash:)
         } else {
             char *file = *(argv + (my_optind++));
             int fd = open(file, O_RDONLY);

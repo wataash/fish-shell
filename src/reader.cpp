@@ -2000,6 +2000,7 @@ void reader_data_t::highlight_search() {
     if (history_search.is_at_end()) {
         return;
     }
+//<<<<<<< HEAD
     const wcstring &needle = history_search.search_string();
     const editable_line_t *el = &command_line;
     size_t match_pos = el->text.find(needle);
@@ -2007,6 +2008,77 @@ void reader_data_t::highlight_search() {
         size_t end = match_pos + needle.size();
         for (size_t i = match_pos; i < end; i++) {
             colors.at(i).background = highlight_role_t::search_match;
+//=======
+//
+//    data = data->next;
+//
+//    // Invoke the destructor to balance our new.
+//    delete n;
+//
+//    if (data == 0) {
+//        reader_interactive_destroy();
+//    } else {
+//        end_loop = 0;
+//        // history_set_mode( data->app_name.c_str() );
+//        s_reset(&data->screen, screen_reset_abandon_line);
+//    }
+//}
+//
+//void reader_set_left_prompt(const wcstring &new_prompt) { data->left_prompt = new_prompt; }
+//
+//void reader_set_right_prompt(const wcstring &new_prompt) { data->right_prompt = new_prompt; }
+//
+//void reader_set_allow_autosuggesting(bool flag) { data->allow_autosuggestion = flag; }
+//
+//void reader_set_expand_abbreviations(bool flag) { data->expand_abbreviations = flag; }
+//
+//void reader_set_complete_function(complete_function_t f) { data->complete_func = f; }
+//
+//void reader_set_highlight_function(highlight_function_t func) { data->highlight_function = func; }
+//
+//void reader_set_test_function(parser_test_error_bits_t (*f)(const wchar_t *)) {
+//    data->test_func = f;
+//}
+//
+//void reader_set_exit_on_interrupt(bool i) { data->exit_on_interrupt = i; }
+//
+//void reader_set_silent_status(bool flag) { data->silent = flag; }
+//
+//void reader_import_history_if_necessary() {
+//    // wataash: doesn't import fish history, but bash history.
+//    // Import history from older location (config path) if our current history is empty.
+//    if (data->history && data->history->is_empty()) {
+//        data->history->populate_from_config_path();
+//    }
+//
+//    // Import history from bash, etc. if our current history is still empty.
+//    if (data->history && data->history->is_empty()) {
+//        // Try opening a bash file. We make an effort to respect $HISTFILE; this isn't very complete
+//        // (AFAIK it doesn't have to be exported), and to really get this right we ought to ask bash
+//        // itself. But this is better than nothing.
+//        const auto var = env_get(L"HISTFILE");
+//        wcstring path = (var ? var->as_string() : L"~/.bash_history");
+//        expand_tilde(path);
+//        FILE *f = wfopen(path, "r");
+//        if (f) {
+//            data->history->populate_from_bash(f);
+//            fclose(f);
+//        }
+//    }
+//}
+//
+///// Called to set the highlight flag for search results.
+//static void highlight_search() {
+//    if (!data->search_buff.empty() && !data->history_search.is_at_end()) {
+//        const editable_line_t *el = &data->command_line;
+//        const wcstring &needle = data->search_buff;
+//        size_t match_pos = el->text.find(needle);
+//        if (match_pos != wcstring::npos) {
+//            size_t end = match_pos + needle.size();
+//            for (size_t i = match_pos; i < end; i++) {
+//                data->colors.at(i) |= (highlight_spec_search_match << 16);
+//            }
+//>>>>>>> comments (wataash:)
         }
     }
 }
@@ -3579,6 +3651,7 @@ static int read_ni(parser_t &parser, int fd, const io_chain_t &io) {
 int reader_read(parser_t &parser, int fd, const io_chain_t &io) {
     int res;
 
+    // wataash: isn't `is_interactive_session` a sufficient condition?
     // If reader_read is called recursively through the '.' builtin, we need to preserve
     // is_interactive. This, and signal handler setup is handled by
     // proc_push_interactive/proc_pop_interactive.

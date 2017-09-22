@@ -1,3 +1,6 @@
+.idea/workspace.xml
+cmake-build-debug/
+
 # Note that some of the patterns below should be in an individual's
 # ~/.config/git/ignore file. For example, ".DS_Store" from people working on
 # MacOS.

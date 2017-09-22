@@ -2249,8 +2249,18 @@ static relaxed_atomic_t<uint64_t> run_count{0};
 uint64_t reader_run_count() { return run_count; }
 
 /// Read interactively. Read input from stdin while providing editing facilities.
+//<<<<<<< HEAD
 static int read_i(parser_t &parser) {
     reader_push(parser, history_session_id(parser.vars()));
+//=======
+//static int read_i() {
+//    // reader_push(history_session_id().c_str());
+//    {
+//        std::wstring sessid = history_session_id();
+//        const wchar_t *sessid_cstr = sessid.c_str();
+//        reader_push(sessid_cstr);
+//    }
+//>>>>>>> dbg
     reader_set_complete_function(&complete);
     reader_set_highlight_function(&highlight_shell);
     reader_set_test_function(&reader_shell_test);
@@ -3587,10 +3597,23 @@ int reader_read(parser_t &parser, int fd, const io_chain_t &io) {
         }
     }
 
+//<<<<<<< HEAD
     scoped_push<bool> interactive_push{&parser.libdata().is_interactive, interactive};
     signal_set_handlers_once(interactive);
 
     res = parser.is_interactive() ? read_i(parser) : read_ni(parser, fd, io);
+//=======
+//    int breakpoint;
+//    if (shell_is_interactive()) {
+//        res = read_i();
+//        breakpoint = 0;
+//    } else {
+//        res = read_ni(fd, io);
+//        breakpoint = 0;
+//    }
+//    (void) breakpoint;
+//    // res = shell_is_interactive() ? read_i() : read_ni(fd, io);
+//>>>>>>> dbg
 
     // If the exit command was called in a script, only exit the script, not the program.
     reader_set_end_loop(false);

@@ -223,3 +223,35 @@ ADD_CUSTOM_TARGET(lint-all
 
 INCLUDE(FeatureSummary)
 FEATURE_SUMMARY(WHAT ALL)
+
+
+#[[
+
+cmake_minimum_required(VERSION 3.8)
+project(fish_shell)
+
+set(CMAKE_VERBOSE_MAKEFILE on)
+
+file(GLOB_RECURSE SOURCE_FILES_DUMMY "*.cpp" "*.h")
+
+add_executable(zdummy ${SOURCE_FILES_DUMMY})
+add_custom_target(fish COMMAND cd ${PROJECT_SOURCE_DIR} && make)
+
+# CPPFLAGS=-I...
+include_directories(
+        ./
+)
+
+add_definitions(
+        -DHAVE_CONFIG_H
+        -D_UNICODE=1
+        -DLOCALEDIR=\"/usr/local/share/locale\"
+        -DPREFIX=L\"/usr/local\"
+        -DDATADIR=L\"/usr/local/share\"
+        -DSYSCONFDIR=L\"/usr/local/etc\"
+        -DBINDIR=L\"/usr/local/bin\"
+        -DDOCDIR=L\"/usr/local/share/doc/fish\"
+        -DFISH_BUILD_VERSION=\"2.6.0-612-ga9c0325\"
+)
+
+]]

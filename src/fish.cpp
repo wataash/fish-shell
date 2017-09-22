@@ -303,7 +303,13 @@ static int fish_parse_opt(int argc, char **argv, fish_cmd_opts_t *opts) {
                 if (tmp >= 0 && tmp <= 10 && !*end && !errno) {
                     debug_level = static_cast<int>(tmp);
                 } else {
+//<<<<<<< HEAD
                     activate_flog_categories_by_pattern(str2wcstring(optarg));
+//=======
+//                    fwprintf(stderr, _(L"Invalid value '%s' for debug-level flag (-d), "
+//                                        "must be between 0 and 10"), optarg);
+//                    exit(1);
+//>>>>>>> Make error messages for `-d` and `-D` informative
                 }
                 break;
             }
@@ -375,8 +381,13 @@ static int fish_parse_opt(int argc, char **argv, fish_cmd_opts_t *opts) {
                 if (tmp > 0 && tmp <= 128 && !*end && !errno) {
                     set_debug_stack_frames(static_cast<int>(tmp));
                 } else {
+<<<<<<< HEAD
                     std::fwprintf(stderr, _(L"Invalid value '%s' for debug-stack-frames flag"),
                                   optarg);
+=======
+                    fwprintf(stderr, _(L"Invalid value '%s' for debug-stack-frames flag (-D), "
+                                        "must be between 1 and 128"), optarg);
+>>>>>>> Make error messages for `-d` and `-D` informative
                     exit(1);
                 }
                 break;

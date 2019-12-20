@@ -1,0 +1,48 @@
+commit 9d99f87679c258881b7942bab4924447f9857616
+Author: Wataru Ashihara <wataash0607@gmail.com>
+Date:   Fri Sep 22 17:51:03 2017 +0900
+
+    tmp fixing doc about -d and -D
+
+diff --git a/doc_src/fish.txt b/doc_src/fish.txt
+index 10a538109..d130ad4df 100644
+--- a/doc_src/fish.txt
++++ b/doc_src/fish.txt
+@@ -16,6 +16,8 @@ The following options are available:
+ - `-C` or `--init-command=COMMANDS` evaluate the specified commands after reading the configuration, before running the command specified by `-c` or reading interactive input
+ 
+ - `-d` or `--debug-level=DEBUG_LEVEL` specify the verbosity level of fish. A higher number means higher verbosity. The default level is 1.
++wataash: copied
++- `-d` or `--debug-level=DEBUG_LEVEL` enables debug output and specifies a verbosity level up to 10 (like `fish -d 2`). Defaults to 0.
+ 
+ - `-i` or `--interactive` specify that fish is to run in interactive mode
+ 
+diff --git a/doc_src/fish_indent.txt b/doc_src/fish_indent.txt
+index 2cc429fb7..3eccb779f 100644
+--- a/doc_src/fish_indent.txt
++++ b/doc_src/fish_indent.txt
+@@ -21,8 +21,9 @@ The following options are available:
+ 
+ - `--html` outputs HTML, which supports syntax highlighting if the appropriate CSS is defined. The CSS class names are the same as the variable names, such as `fish_color_command`.
+ 
+-- `-d` or `--debug-level=DEBUG_LEVEL` enables debug output and specifies a verbosity level (like `fish -d`). Defaults to 0.
++wataash: fixing
++- `-d` or `--debug-level=DEBUG_LEVEL` enables debug output and specifies a verbosity level up to 10 (like `fish -d 2`). Defaults to 0 if not given.
+ 
+-- `-D` or `--debug-stack-frames=DEBUG_LEVEL` specify how many stack frames to display when debug messages are written. The default is zero. A value of 3 or 4 is usually sufficient to gain insight into how a given debug call was reached but you can specify a value up to 128.
++- `-D` or `--debug-stack-frames=DEBUG_LEVEL` specify how many stack frames to display when debug messages are written. The default is zero if not given. A value of 3 or 4 is usually sufficient to gain insight into how a given debug call was reached but you can specify a value up to 128.
+ 
+ - `--dump-parse-tree` dumps information about the parsed statements to stderr. This is likely to be of interest only to people working on the fish source code.
+diff --git a/doc_src/fish_key_reader.txt b/doc_src/fish_key_reader.txt
+index d1d5db2ab..3bb5d38a4 100644
+--- a/doc_src/fish_key_reader.txt
++++ b/doc_src/fish_key_reader.txt
+@@ -16,6 +16,8 @@ The following options are available:
+ - `-c` or `--continuous` begins a session where multiple key sequences can be inspected. By default the program exits after capturing a single key sequence.
+ 
+ - `-d` or `--debug-level=DEBUG_LEVEL` enables debug output and specifies a verbosity level (like `fish -d`). Defaults to 0.
++wataash: copied
++- `-d` or `--debug-level=DEBUG_LEVEL` enables debug output and specifies a verbosity level up to 10 (like `fish -d 2`). Defaults to 0.
+ 
+ - `-D` or `--debug-stack-frames=DEBUG_LEVEL` specify how many stack frames to display when debug messages are written. The default is zero. A value of 3 or 4 is usually sufficient to gain insight into how a given debug call was reached but you can specify a value up to 128.
+ 
